@@ -15,6 +15,31 @@
       background:#fff0f6;
     }
 
+    /* --- CUORI CHE CADONO IN BACKGROUND --- */
+    .hearts{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart{
+      position: absolute;
+      top: -10vh;
+      color: rgba(255, 77, 109, .35);
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      text-shadow: 0 8px 18px rgba(0,0,0,.08);
+      will-change: transform;
+    }
+
+    @keyframes fall{
+      0%   { transform: translate3d(var(--x, 0), -12vh, 0) rotate(0deg); }
+      100% { transform: translate3d(calc(var(--x, 0) + var(--drift, 0px)), 112vh, 0) rotate(360deg); }
+    }
+
     .card{
       background: white;
       padding: 32px;
@@ -22,6 +47,9 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.12);
       text-align:center;
       width: min(720px, 94vw);
+
+      position: relative; /* sopra ai cuori */
+      z-index: 1;
     }
 
     h1{ margin: 0 0 12px; }
@@ -86,6 +114,9 @@
 </head>
 
 <body>
+  <!-- Cuori che cadono -->
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
   <div class="card">
     <h1>Do you want my valentine?</h1>
 
@@ -100,13 +131,14 @@
       <button class="yes" onclick="yes()">Yes</button>
       <button class="no" id="noBtn" type="button">No</button>
     </div>
-    <div id="msg"></div>
 
     <!-- 2 foto sotto -->
     <div class="grid-2 bottom">
       <img src="images/babe3.jpg" alt="Foto 3" loading="lazy">
       <img src="images/babe4.jpg" alt="Foto 4" loading="lazy">
     </div>
+
+    <div id="msg"></div>
   </div>
 
   <script>
@@ -144,10 +176,37 @@
       moveNo();
     });
 
-    // opzionale: scappa quando lo sfiori (rende difficile cliccarlo)
+    // scappa quando lo sfiori (rende difficile cliccarlo)
     noBtn.addEventListener("mouseenter", moveNo);
 
     window.addEventListener("load", moveNo);
+
+    // --- cuori che cadono ---
+    (function spawnHearts(){
+      const wrap = document.getElementById("hearts");
+      const COUNT = 22;
+
+      for (let i = 0; i < COUNT; i++){
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = "❤";
+
+        const left = Math.random() * 100;               // vw
+        const size = 12 + Math.random() * 20;           // px
+        const dur  = 6 + Math.random() * 8;             // s
+        const delay= -Math.random() * dur;              // s
+        const drift= (Math.random() * 160 - 80) + "px"; // px
+
+        h.style.left = left + "vw";
+        h.style.fontSize = size + "px";
+        h.style.animationDuration = dur + "s";
+        h.style.animationDelay = delay + "s";
+        h.style.setProperty("--x", "0px");
+        h.style.setProperty("--drift", drift);
+
+        wrap.appendChild(h);
+      }
+    })();
   </script>
 </body>
 </html>
