@@ -26,11 +26,12 @@
 
     .grid-2 img{
       width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
+      height: 220px;           /* puoi aumentare/diminuire */
+      object-fit: contain;     /* mostra l’immagine intera */
       border-radius: 14px;
       box-shadow: 0 10px 22px rgba(0,0,0,.12);
-      background: #f1f3f5;
+      background: #fff;        /* colore dei bordi quando non riempie */
+      padding: 6px;            /* opzionale: respiro */
     }
 
     /* opzionale: un filo più vicine ai bottoni */
