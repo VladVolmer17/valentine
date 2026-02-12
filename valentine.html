@@ -4,29 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Valentine?</title>
-
   <style>
-    body{
-      font-family: system-ui, Arial;
-      display: grid;
-      place-items: center;
-      height: 100vh;
-      margin: 0;
-      background:#fff0f6;
+    body { font-family: system-ui, Arial; display: grid; place-items: center; height: 100vh; margin: 0; background:#fff0f6; }
+    .card { background: white; padding: 32px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.12); text-align:center; }
+    h1 { margin: 0 0 12px; }
+    button, a.btn { display:inline-block; padding: 12px 18px; border-radius: 12px; border: 0; cursor: pointer; text-decoration:none; }
+    .yes { background:#ff4d6d; color:white; }
+    .no  { background:#f1f3f5; color:#111; margin-left: 8px; }
+    #msg { margin-top: 16px; font-weight: 600; }
+
+    .actions{
+      margin: 10px 0 14px;
     }
 
-    .card{
-      background: white;
-      padding: 32px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.12);
-      text-align:center;
-      width: min(720px, 94vw);
-    }
-
-    h1{ margin: 0 0 12px; }
-
-    /* --- FOTO (2 sopra + 2 sotto) --- */
     .grid-2{
       width: min(520px, 92vw);
       margin: 14px auto;
@@ -35,39 +25,20 @@
       gap: 10px;
     }
 
-    /* Contenitore foto con sfondo sfocato (no bande bianche) */
-    figure.photo{
-      height: 220px;
-      margin: 0;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 10px 22px rgba(0,0,0,.12);
-      background: #000;
-    }
-
-    figure.photo::before{
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: var(--img);
-      background-size: cover;
-      background-position: center;
-      filter: blur(14px);
-      transform: scale(1.15);
-      opacity: .55;
-    }
-
-    figure.photo > img{
-      position: relative;
-      z-index: 1;
+    .grid-2 img{
       width: 100%;
-      height: 100%;
-      object-fit: contain; /* immagine intera */
-      display: block;
+      height: 220px;
+      object-fit: contain;
+      background: transparent;  /* niente “cornice” */
+      padding: 0;               /* niente bordo */
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.12);
     }
 
-    /* --- BOTTONI --- */
+    /* opzionale: un filo più vicine ai bottoni */
+    .grid-2.top{ margin-bottom: 10px; }
+    .grid-2.bottom{ margin-top: 10px; }
+
     .actions{
       position: relative;
       width: min(520px, 92vw);
@@ -100,42 +71,24 @@
       top: 50%;
       transform: translateY(-50%);
     }
-
-    #msg{ margin-top: 16px; font-weight: 700; }
   </style>
 </head>
-
 <body>
   <div class="card">
     <h1>Do you want my valentine?</h1>
-
-    <!-- 2 foto sopra -->
     <div class="grid-2 top">
-      <figure class="photo" style="--img: url('images/babe1.jpg');">
-        <img src="images/foto1.jpg" alt="Foto 1" loading="lazy">
-      </figure>
-      <figure class="photo" style="--img: url('images/babe2.jpg');">
-        <img src="images/foto2.jpg" alt="Foto 2" loading="lazy">
-      </figure>
+      <img src="images/babe1.jpg" alt="Foto 1" loading="lazy">
+      <img src="images/babe2.jpg" alt="Foto 2" loading="lazy">
     </div>
-
-    <!-- bottoni -->
-    <div class="actions" id="actions">
+    <div>
       <button class="yes" onclick="yes()">Yes</button>
       <button class="no" id="noBtn" type="button">No</button>
     </div>
-
-    <!-- 2 foto sotto -->
-    <div class="grid-2 bottom">
-      <figure class="photo" style="--img: url('images/babe3.jpg');">
-        <img src="images/foto3.jpg" alt="Foto 3" loading="lazy">
-      </figure>
-      <figure class="photo" style="--img: url('images/babe4.jpg');">
-        <img src="images/foto4.jpg" alt="Foto 4" loading="lazy">
-      </figure>
-    </div>
-
     <div id="msg"></div>
+    <div class="grid-2 bottom">
+      <img src="images/babe3.jpg" alt="Foto 3" loading="lazy">
+      <img src="images/babe4.jpg" alt="Foto 4" loading="lazy">
+    </div>
   </div>
 
   <script>
