@@ -12,38 +12,48 @@
     .yes { background:#ff4d6d; color:white; }
     .no  { background:#f1f3f5; color:#111; margin-left: 8px; }
     #msg { margin-top: 16px; font-weight: 600; }
-    .grid{
+    .actions{
+      margin: 10px 0 14px;
+    }
+
+    .grid-2{
       width: min(520px, 92vw);
-      margin: 16px auto 18px;
+      margin: 14px auto;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
 
-    .grid img{
+    .grid-2 img{
       width: 100%;
-      aspect-ratio: 1 / 1;     /* quadrate e consistenti */
-      object-fit: cover;       /* riempie senza deformare */
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
       border-radius: 14px;
       box-shadow: 0 10px 22px rgba(0,0,0,.12);
       background: #f1f3f5;
     }
+
+    /* opzionale: un filo più vicine ai bottoni */
+    .grid-2.top{ margin-bottom: 10px; }
+    .grid-2.bottom{ margin-top: 10px; }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>Do you want my valentine?</h1>
-    <div class="grid">
+    <div class="grid-2 top">
       <img src="images/babe1.jpg" alt="Foto 1" loading="lazy">
       <img src="images/babe2.jpg" alt="Foto 2" loading="lazy">
-      <img src="images/babe3.jpg" alt="Foto 3" loading="lazy">
-      <img src="images/babe4.jpg" alt="Foto 4" loading="lazy">
     </div>
     <div>
       <button class="yes" onclick="yes()">Yes</button>
       <button class="no" onclick="no()">No</button>
     </div>
     <div id="msg"></div>
+    <div class="grid-2 bottom">
+      <img src="images/babe3.jpg" alt="Foto 3" loading="lazy">
+      <img src="images/babe4.jpg" alt="Foto 4" loading="lazy">
+    </div>
   </div>
 
   <script>
