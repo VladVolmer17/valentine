@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valentine?</title>
+  <style>
+    body { font-family: system-ui, Arial; display: grid; place-items: center; height: 100vh; margin: 0; background:#fff0f6; }
+    .card { background: white; padding: 32px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.12); text-align:center; }
+    h1 { margin: 0 0 12px; }
+    button, a.btn { display:inline-block; padding: 12px 18px; border-radius: 12px; border: 0; cursor: pointer; text-decoration:none; }
+    .yes { background:#ff4d6d; color:white; }
+    .no  { background:#f1f3f5; color:#111; margin-left: 8px; }
+    #msg { margin-top: 16px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Do you want my valentine?</h1>
+    <div>
+      <button class="yes" onclick="yes()">Yes</button>
+      <button class="no" onclick="no()">No</button>
+    </div>
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    function yes() { document.getElementById('msg').textContent = "Yay! ❤️"; }
+    function no()  { document.getElementById('msg').textContent = "Ok… but I’ll still bring chocolate 🙂"; }
+  </script>
+</body>
+</html>
